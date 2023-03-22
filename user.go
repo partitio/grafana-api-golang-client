@@ -85,3 +85,8 @@ func (c *Client) UserUpdate(u User) error {
 	}
 	return c.request("PUT", fmt.Sprintf("/api/users/%d", u.ID), nil, bytes.NewBuffer(data), nil)
 }
+
+// UpdateUserActiveOrg set the active org of a specific user
+func (c *Client) UpdateUserActiveOrg(userId int64, orgId int64) error {
+	return c.request("POST", fmt.Sprintf("/api/users/%s/using/%s", userId, orgId), nil, nil, nil)
+}
